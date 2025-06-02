@@ -1,0 +1,403 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignan College</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="script.js" defer></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            font-weight: bolder;
+            color: rgb(18, 93, 223);
+            padding: 40px;
+            text-align: center;
+            font-size: 2.3rem;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Updated Navbar Styling */
+        .navbar {
+            background: rgba(33, 37, 41, 0.95) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #00ffff, #87CEEB); /* Brighter cyan/sky blue gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 1px rgba(255,255,255,0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0074d9;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Updated Footer Styles */
+        footer {
+            background: #001f3f;
+            color: white;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .social-links {
+            margin-top: 0;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #0074d9;
+            background: none;
+        }
+
+        .content-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            margin: 20px auto;
+            padding: 60px;
+            background-color: rgb(167, 220, 236);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            width: 50%;
+            text-align: left;
+            font-size: larger;
+        }
+
+        .about-text p {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 21px;
+        }
+
+        .college-img, .cse-logo {
+            width: 44%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .college-img:hover, .cse-logo:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            font-weight: bolder;
+            color: #0D47A1;
+        }
+
+        .team {
+            padding: 50px;
+            text-align: center;
+            background-color: rgb(188, 230, 243);
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            margin: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+            background-color: rgb(249, 251, 251);
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0D47A1;
+        }
+
+        h3 {
+            color: #1565C0;
+        }
+
+        @media (max-width: 1024px) {
+            .content-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px;
+            }
+
+            .about-text, .college-img {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .social-links {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.5rem;
+                padding: 20px;
+            }
+
+            .content-container {
+                padding: 20px;
+            }
+        }
+
+        .fa-envelope {
+            color: #0077b5; /* Blue color for the email icon */
+            font-size: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SkyCast</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index'%}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'weather_options'%}">Weather</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'otherservices' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'blog2' %}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'feedback' %}">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Existing Content -->
+    <header>Vignan's Institute Of Information Technology</header>
+
+    <div id="about" class="content-container">
+        <div class="about-text">
+            <h2>About Vignan</h2>
+            <p>Vignan's Institute of Information Technology (VIIT) was established in 2002 in Visakhapatnam, 
+                the City of Destiny, to provide quality education and empower future professionals.
+                The institute attained Autonomous status in 2017 and is accredited with NAAC (A+) and NBA,
+                 showcasing its commitment to academic excellence.</p>
+        </div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt65e4yiBXDiT_STvb6u-zchpUvnXiNu6D8U1m6bBIT6s6IVkKmXVT0kF5FFtLX21GUso&usqp=CAU" alt="Vignan College" class="college-img" height="200vh" width="125vw">
+    </div>
+    
+    <div id="about-cse" class="content-container">
+        <div class="about-text">
+            <h2>About CSE</h2>
+            <p>The Department of Computer Science and Engineering (CSE) at Vignan's Institute of Information Technology
+               is dedicated to providing students with the knowledge and skills required to excel in the tech industry.
+               With state-of-the-art laboratories, experienced faculty, and industry collaborations, CSE at VIIT 
+               ensures students are well-prepared for the future.</p>
+            <ul>
+                <li>Modern AI & Machine Learning Labs</li>
+                <li>Industry-driven curriculum</li>
+                <li>Excellent placement opportunities</li>
+                <li>Collaborations with top tech companies</li>
+            </ul>
+        </div>
+        <img src="https://vignaniit.edu.in/images/cse.jpg" alt="CSE Logo" class="cse-logo" height="200vh" width="125vw">
+    </div>
+
+   <section id="team" class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="{% static 'images/hema.jpg'%}" alt="Team Member 1">
+            <h3>Hemalatha</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/hemalatha-bora-693012283" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:hemalathabora9@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/sowji2.jpg' %}" alt="Team Member 2">
+            <h3>Sowjanya</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/sowjanya-bodala-851b2533a" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:sowjanyabodala38@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/divya.jpg'%}" alt="Team Member 3">
+            <h3>Divyasri</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/divyasri-atmakuri-b8437b2b7" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:atmakuridivyasri@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/mouli.jpg' %}" alt="Team Member 4">
+            <h3>Moulipriya</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/mouli-priya-adina-685a012b6" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:moulipriya23@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/jnana.jpg' %}" alt="Team Member 5">
+            <h3>Jnanasri</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/jnanasri-adapa-8a4a042b6" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:jnanasriadapa@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/sudeepthi.jpg' %}" alt="Team Member 6">
+            <h3>Sudeepthi</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/sudeepthi-arugula-b00a062b6" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:sudeepthiarugula@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/teju.jpg' %}" alt="Team Member 7">
+            <h3>Tejaswini</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/allu-tejaswini-3994032b7" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:tejaswiniallu6@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/anusha.jpg' %}" alt="Team Member 8">
+            <h3>Anusha</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/chukka-anusha-7b4a5b2b6" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:chukkaanusha80@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/samya.jpg' %}" alt="Team Member 9">
+            <h3>Samya Devi</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/samya-devi-73b91a2b7" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:badasamyadevi10a@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/alekhya.jpg' %}" alt="Team Member 10">
+            <h3>Alekhya</h3>
+            <p>
+                <a href="https://www.linkedin.com/in/alekhya-usse-225089351" target="_blank">
+                    <i class="fa-brands fa-linkedin" style="color: #0077b5; font-size: 30px;"></i>
+                </a>
+                <a href="mailto:alekhyausse09@gmail.com">
+                    <i class="fa-solid fa-envelope" style="color: #0077b5; font-size: 30px; margin-left: 10px;"></i>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+</body>
+</html>
